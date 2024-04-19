@@ -1,0 +1,11 @@
+{:paths [""]
+ :deps {io.github.nextjournal/clerk {:mvn/version "0.15.957"}
+        quil/quil {:mvn/version "4.3.1563"}
+        org.babashka/cli {:mvn/version "0.7.52"}}
+ :aliases {:nextjournal/clerk {:extra-paths ["datasets"]
+                               :exec-fn nextjournal.clerk/build!
+                               ;; notebooks to be built, accepts globs patterns
+                               :exec-args {:git/url "https://github.com/nextjournal/clerk-demo"
+                                           :paths ["index.md"
+                                                   "intro*.clj"]}
+                               :main-opts ["-m" "babashka.cli.exec"]}}}

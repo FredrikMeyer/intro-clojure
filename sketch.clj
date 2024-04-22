@@ -20,9 +20,28 @@
    :right-center (/ q/PI 3)  ;; pi/4 1
    })
 
+(defn rgauss
+  "Sample from a Gaussian distribution with given mean and std."
+  [mean std]
+  (+ mean (* std (q/random-gaussian))))
+
+(defn random-point-on-circle [x y radius mean]
+    (let [theta (rgauss mean (* 0.35 q/PI))]  ;; 0.3
+      [(+ x (* radius (Math/cos theta)))
+       (+ y (* radius (Math/sin theta)))]))
+
+(defn random-line-on-circle [x y radius mean]
+    (let [[a b] (random-point-on-circle x y radius mean)
+          [c d] (random-point-on-circle x y radius mean)]
+      (q/line a b c d)))
+
 (defn draw [state]
+  (q/background 0 10)
   ;; TODO draw here
   ;; Skriv funksjoner random-point-on-circle, random-line-on-circle
+  (doseq [_ (range 10000)]
+    (random-line-on-circle 300 300 250 0))
+  (q/no-loop)
   )
 
 #_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
@@ -38,10 +57,7 @@
     :middleware [m/fun-mode m/pause-on-error]))
 
 ;; Nyttige funksjoner
-(defn rgauss
-  "Sample from a Gaussian distribution with given mean and std."
-  [mean std]
-  (+ mean (* std (q/random-gaussian))))
+
 
 (comment
   (defn random-point-on-circle [x y radius mean]

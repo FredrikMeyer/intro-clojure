@@ -20,8 +20,10 @@
 ;; - **Kjøretidspolymorfi**
 ;;
 ;;   Vil ikke si noe om dette, men Clojure mener å ha "løst _the expression problem_" (hvordan enkelt legge til nye datatyper). Se f.eks [denne bloggposten](https://eli.thegreenplace.net/2016/the-expression-problem-and-its-solutions/).
-;; - Samtidig (_concurrent_) programmering
-;; - På JVM - god Java-interop.
+;;
+;;   Litt da: Man kan lage egne type med `deftype` og `defrecord`, og også multi-metoder med `defmethod`. Men mer om det neste gang kanskje!?
+;; - **Samtidig (_concurrent_) programmering**
+;; - **På JVM - god Java-interop**.
 
 ;; ## Interaktiv utvikling
 
